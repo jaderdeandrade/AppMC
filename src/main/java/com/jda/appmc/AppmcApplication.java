@@ -32,7 +32,9 @@ import com.jda.appmc.repositories.PedidoRepository;
 import com.jda.appmc.repositories.ProdutoRepository;
 
 
-
+/*
+ * Jader de Andrade
+ * */
 @SpringBootApplication
 public class AppmcApplication implements CommandLineRunner {
 	
