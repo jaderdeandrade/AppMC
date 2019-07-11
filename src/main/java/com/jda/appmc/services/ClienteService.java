@@ -61,7 +61,7 @@ public class ClienteService {
 		}
 		catch (DataIntegrityViolationException e) {
 			// TODO: handle exception
-			throw new DataIntegrityException("Não é possivél excluir esse cliente!");
+			throw new DataIntegrityException("Não é possivél excluir esse cliente porque há pedidos relacionados!");
 		}
 		
 			
