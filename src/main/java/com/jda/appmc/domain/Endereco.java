@@ -12,15 +12,11 @@ import javax.persistence.ManyToOne;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 @Entity
-public class Endereco implements Serializable{
-	
-	/**
-	 * 
-	 */
+public class Endereco implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-	@GeneratedValue(strategy=GenerationType.IDENTITY)	
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer id;
 	private String logradouro;
 	private String numero;
@@ -38,11 +34,10 @@ public class Endereco implements Serializable{
 	private Cidade cidade;
 	
 	public Endereco() {
-		
 	}
 
 	public Endereco(Integer id, String logradouro, String numero, String complemento, String bairro, String cep,
-			Cliente cliente,Cidade cidade) {
+			Cliente cliente, Cidade cidade) {
 		super();
 		this.id = id;
 		this.logradouro = logradouro;
@@ -109,7 +104,7 @@ public class Endereco implements Serializable{
 	public void setCliente(Cliente cliente) {
 		this.cliente = cliente;
 	}
-	
+
 	public Cidade getCidade() {
 		return cidade;
 	}
@@ -117,7 +112,6 @@ public class Endereco implements Serializable{
 	public void setCidade(Cidade cidade) {
 		this.cidade = cidade;
 	}
-	
 
 	@Override
 	public int hashCode() {
@@ -143,8 +137,7 @@ public class Endereco implements Serializable{
 			return false;
 		return true;
 	}
-
-
 	
-
+	
+	
 }

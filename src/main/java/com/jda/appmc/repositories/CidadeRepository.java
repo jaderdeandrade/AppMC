@@ -8,4 +8,6 @@ import com.jda.appmc.domain.Cidade;
 @Repository
 public interface CidadeRepository extends JpaRepository<Cidade, Integer> {
 
+
+
 }
