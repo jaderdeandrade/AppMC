@@ -11,7 +11,7 @@ import com.jda.appmc.services.DBService;
 
 
 @Configuration
-@Profile("dev")
+@Profile("test")
 public class TestConfig {
 
 	@Autowired
