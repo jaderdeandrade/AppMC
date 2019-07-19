@@ -5,7 +5,6 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.jda.appmc.domain.ItemPedido;
 import com.jda.appmc.domain.PagamentoComBoleto;
@@ -15,7 +14,6 @@ import com.jda.appmc.repositories.ItemPedidoRepository;
 import com.jda.appmc.repositories.PagamentoRepository;
 import com.jda.appmc.repositories.PedidoRepository;
 import com.jda.appmc.services.exceptions.ObjectNotFoundException;
-
 
 @Service
 public class PedidoService {
@@ -47,7 +45,6 @@ public class PedidoService {
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Pedido.class.getName()));
 	}
 	
-	@Transactional
 	public Pedido insert(Pedido obj) {
 		obj.setId(null);
 		obj.setInstante(new Date());
@@ -67,18 +64,7 @@ public class PedidoService {
 			ip.setPedido(obj);
 		}
 		itemPedidoRepository.saveAll(obj.getItens());
-		emailService.sendOrderConfirmationHtmlEmail(obj);
-		//System.out.println(obj);
+		emailService.sendOrderConfirmationEmail(obj);
 		return obj;
 	}
-	
-/*	public Page<Pedido> findPage(Integer page, Integer linesPerPage, String orderBy, String direction) {
-		UserSS user = UserService.authenticated();
-		if (user == null) {
-			throw new AuthorizationException("Acesso negado");
-		}
-		PageRequest pageRequest = PageRequest.of(page, linesPerPage, Direction.valueOf(direction), orderBy);
-		Cliente cliente =  clienteService.find(user.getId());
-		return repo.findByCliente(cliente, pageRequest);
-	}*/
 }

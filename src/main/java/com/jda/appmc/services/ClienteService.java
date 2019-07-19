@@ -1,5 +1,4 @@
 package com.jda.appmc.services;
-
 import java.util.List;
 import java.util.Optional;
 
@@ -27,19 +26,18 @@ import com.jda.appmc.services.exceptions.ObjectNotFoundException;
 public class ClienteService {
 	
 	@Autowired
-	private BCryptPasswordEncoder pe;
-
-	@Autowired
 	private ClienteRepository repo;
 	
 	@Autowired
-	private EnderecoRepository enderecoRepository;	
-
+	private EnderecoRepository enderecoRepository;
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 	public Cliente find(Integer id) {
 		Optional<Cliente> obj = repo.findById(id);
 		return obj.orElseThrow(() -> new ObjectNotFoundException(
 				"Objeto não encontrado! Id: " + id + ", Tipo: " + Cliente.class.getName()));
-
 	}
 	
 	@Transactional
@@ -50,28 +48,23 @@ public class ClienteService {
 		return obj;
 	}
 	
-	
 	public Cliente update(Cliente obj) {
-		Cliente newObj =  find(obj.getId());
+		Cliente newObj = find(obj.getId());
 		updateData(newObj, obj);
 		return repo.save(newObj);
 	}
-	
-	
+
 	public void delete(Integer id) {
 		find(id);
 		try {
 			repo.deleteById(id);
 		}
 		catch (DataIntegrityViolationException e) {
-			// TODO: handle exception
-			throw new DataIntegrityException("Não é possivél excluir esse cliente porque há pedidos relacionados!");
+			throw new DataIntegrityException("Não é possível excluir porque há pedidos relacionados");
 		}
-		
-			
 	}
 	
-	public List<Cliente> findAll(){
+	public List<Cliente> findAll() {
 		return repo.findAll();
 	}
 	
@@ -81,8 +74,7 @@ public class ClienteService {
 	}
 	
 	public Cliente fromDTO(ClienteDTO objDto) {
-		return new Cliente(objDto.getId(),objDto.getNome(),objDto.getEmail(), null, null, null);
-		
+		return new Cliente(objDto.getId(), objDto.getNome(), objDto.getEmail(), null, null, null);
 	}
 	
 	public Cliente fromDTO(ClienteNewDTO objDto) {
@@ -101,11 +93,7 @@ public class ClienteService {
 	}
 	
 	private void updateData(Cliente newObj, Cliente obj) {
-		
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
-		
 	}
-	
-
 }
