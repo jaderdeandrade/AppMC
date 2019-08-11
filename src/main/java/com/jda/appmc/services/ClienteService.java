@@ -10,6 +10,7 @@ import org.springframework.data.domain.Sort.Direction;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.jda.appmc.domain.Cidade;
 import com.jda.appmc.domain.Cliente;
@@ -27,6 +28,9 @@ import com.jda.appmc.services.exceptions.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
+	
+	@Autowired
+	private LocalService localService;
 	
 	@Autowired
 	private ClienteRepository repo;
@@ -104,5 +108,9 @@ public class ClienteService {
 	private void updateData(Cliente newObj, Cliente obj) {
 		newObj.setNome(obj.getNome());
 		newObj.setEmail(obj.getEmail());
+	}
+	
+	public void uploadProfilePicture(MultipartFile multipartFile) {
+		localService.uploadFile(multipartFile);
 	}
 }

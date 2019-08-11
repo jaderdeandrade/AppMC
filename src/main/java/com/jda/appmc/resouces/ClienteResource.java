@@ -1,6 +1,7 @@
 package com.jda.appmc.resouces;
 
 import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 import com.jda.appmc.domain.Cliente;
@@ -78,5 +80,10 @@ public class ClienteResource {
 		Page<Cliente> list = service.findPage(page, linesPerPage, orderBy, direction);
 		Page<ClienteDTO> listDto = list.map(obj -> new ClienteDTO(obj));  
 		return ResponseEntity.ok().body(listDto);
-	}	
+	}
+
+	@RequestMapping(value="/picture", method=RequestMethod.POST)
+	public void uploadProfilePicture(@RequestParam MultipartFile file){
+		service.uploadProfilePicture(file);
+	}
 }
