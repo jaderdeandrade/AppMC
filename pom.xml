@@ -69,12 +69,11 @@
 			<version>0.7.0</version>
 		</dependency>
 
-		<!-- https://mvnrepository.com/artifact/com.google.apis/google-api-services-drive 
 		<dependency>
-			<groupId>com.google.apis</groupId>
-			<artifactId>google-api-services-drive</artifactId>
-			<version>v3-rev173-1.25.0</version>
-		</dependency>-->
+			<groupId>org.imgscalr</groupId>
+			<artifactId>imgscalr-lib</artifactId>
+			<version>4.2</version>
+		</dependency>
 
 		<dependency>
 			<groupId>commons-io</groupId>
